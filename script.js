@@ -55,3 +55,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const elements = document.querySelectorAll(".scroll-el");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible"); // Uklanja klasu kada izađe
+        }
+      });
+    },
+    { threshold: 0.3 } // Kada 30% elementa bude vidljivo
+  );
+
+  elements.forEach((el) => observer.observe(el));
+});
+
